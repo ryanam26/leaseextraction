@@ -81,4 +81,55 @@ header h1 {
   margin-bottom: 20px;
   border-radius: 4px;
   color: var(--error-color);
+}
+
+.error-message details {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.error-message summary {
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.error-message pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-family: monospace;
+  font-size: 0.9rem;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  color: #333;
+}
+
+.error-help {
+  margin-top: 15px;
+  font-style: italic;
+  color: #555;
+}
+
+.test-mode-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  padding: 20px;
+}
+
+.test-mode-message h3 {
+  color: var(--accent-color);
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.test-mode-message p {
+  color: var(--secondary-color);
+  font-size: 1.1rem;
 } 
