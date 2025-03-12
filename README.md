@@ -41,6 +41,8 @@ cp .env.example .env
 # Edit .env to add your API key
 ```
 
+⚠️ **IMPORTANT**: Never commit your `.env` file or hardcode API keys in your code. The `.env` file is included in `.gitignore` to prevent accidental commits.
+
 4. Start the development server:
 
 ```bash
@@ -96,6 +98,16 @@ vercel --prod
 - After deployment, update the `vite.config.ts` file with your actual Vercel URL
 - The free tier of Vercel has limitations on serverless function execution time, which may affect processing of large PDFs
 - Consider setting up proper API key management for production use
+
+## API Key Security
+
+This application requires an Anthropic API key to function. To keep your API key secure:
+
+1. **Never commit API keys to your repository**
+2. Always use environment variables to store sensitive information
+3. When deploying, use the platform's secure environment variable storage (like Vercel's Environment Variables)
+4. Rotate your API keys periodically
+5. Consider using API key management services for production applications
 
 ## Technologies Used
 

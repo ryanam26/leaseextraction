@@ -1,6 +1,10 @@
 import Anthropic from '@anthropic-ai/sdk';
 import fetch from 'node-fetch';
 import fs from 'fs';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 async function main() {
   // Method 1: Fetch and encode a remote PDF
@@ -12,8 +16,13 @@ async function main() {
   // Method 2: Load from a local file
   // const pdfBase64 = fs.readFileSync('document.pdf').toString('base64');
   
-  // Set your API key directly in the file
-  const apiKey = "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"; // Replace with your actual Anthropic API key
+  // Get API key from environment variables
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) {
+    console.error('ANTHROPIC_API_KEY environment variable is not set');
+    process.exit(1);
+  }
+  
   const anthropic = new Anthropic({ apiKey });
   
   const response = await anthropic.messages.create({
@@ -59,7 +68,14 @@ The above is just an example with sample values. Please replace with actual valu
   });
   
   // Extract the JSON from markdown formatting if present
-  let responseText = response.content[0].text;
+  let responseText = '';
+  if (response.content[0].type === 'text') {
+    responseText = response.content[0].text;
+  } else {
+    console.error('Unexpected response format:', response.content[0]);
+    process.exit(1);
+  }
+  
   // Remove markdown code block formatting if present
   responseText = responseText.replace(/```json\s*|\s*```/g, '');
   

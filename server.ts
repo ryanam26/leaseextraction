@@ -2,6 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import Anthropic from '@anthropic-ai/sdk';
 import fetch from 'node-fetch';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3002;
@@ -62,7 +66,11 @@ app.post('/api/extract', async (req, res) => {
     const pdfBase64 = Buffer.from(arrayBuffer).toString('base64');
     
     // Set your API key
-    const apiKey = process.env.ANTHROPIC_API_KEY || "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";
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+    if (!apiKey) {
+      return res.status(500).json({ error: 'ANTHROPIC_API_KEY environment variable is not set' });
+    }
+    
     const anthropic = new Anthropic({ apiKey });
     
     const response = await anthropic.messages.create({
