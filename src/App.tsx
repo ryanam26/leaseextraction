@@ -6,14 +6,12 @@ import ExtractedData from './components/ExtractedData';
 import { LeaseData } from './types';
 
 function App() {
-  const [pdfUrl, setPdfUrl] = useState<string>('');
   const [pdfData, setPdfData] = useState<string | null>(null);
   const [extractedData, setExtractedData] = useState<LeaseData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const handlePdfUrlSubmit = async (url: string) => {
-    setPdfUrl(url);
     setIsLoading(true);
     setError(null);
     setPdfData(null);

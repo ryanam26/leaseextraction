@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc --skipLibCheck && vite build",
     "preview": "vite preview",
     "server": "tsx server.ts",
     "vercel-build": "npm run build"
@@ -21,6 +21,7 @@
     "dotenv": "^16.3.1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.19",
     "@types/react": "^18.2.55",
